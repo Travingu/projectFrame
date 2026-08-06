@@ -1,121 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+const features = [
+  {
+    title: 'Fast',
+    description:
+      'Built on Vite and the React Compiler for instant HMR and optimized production builds out of the box.',
+  },
+  {
+    title: 'Flexible',
+    description:
+      'A minimal starting point with no opinionated abstractions — add only what your project actually needs.',
+  },
+  {
+    title: 'Modern',
+    description:
+      'TypeScript, Tailwind CSS, and Oxlint configured from the start so you can skip the boilerplate setup.',
+  },
+]
+
+const upcoming = Array.from({ length: 6 })
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+    <div className="min-h-screen bg-surface font-sans text-ink antialiased">
+      <header className="w-full px-8 py-8">
+        <a
+          href="https://travingn.dev/"
+          className="text-[32px] font-bold tracking-tight text-ink transition-opacity hover:opacity-60"
+        >
+          Travis Nguyen
+        </a>
+      </header>
+
+      <main className="mx-auto w-full max-w-5xl px-6 pb-24">
+        <div className="pt-8 pb-14 text-center">
+          <h1 className="text-5xl font-bold tracking-tight text-ink sm:text-6xl">
+            PROJECT FRAME
+          </h1>
+          <p className="mt-3 text-lg font-semibold text-accent">
+            a starter framework by Travis
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+        <div className="mb-6 flex flex-col gap-6">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="rounded-2xl border-[3px] border-black bg-white p-10 transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000]"
+            >
+              <h2 className="text-3xl font-bold tracking-tight text-ink">
+                {feature.title}
+              </h2>
+              <p className="mt-3 text-lg text-ink/70">{feature.description}</p>
+            </div>
+          ))}
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {upcoming.map((_, i) => (
+            <div
+              key={i}
+              className="flex aspect-4/3 flex-col items-center justify-center rounded-2xl border-[3px] border-black bg-white p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000]"
+            >
+              <span className="font-bold">Coming soon</span>
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
   )
 }
 
