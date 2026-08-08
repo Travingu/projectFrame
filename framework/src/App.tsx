@@ -1,22 +1,28 @@
 const features = [
   {
+    index: '01',
+    tag: 'Performance',
     title: 'Fast',
     description:
       'Built on Vite and the React Compiler for instant HMR and optimized production builds out of the box.',
   },
   {
+    index: '02',
+    tag: 'Architecture',
     title: 'Flexible',
     description:
       'A minimal starting point with no opinionated abstractions — add only what your project actually needs.',
   },
   {
+    index: '03',
+    tag: 'Tooling',
     title: 'Modern',
     description:
       'TypeScript, Tailwind CSS, and Oxlint configured from the start so you can skip the boilerplate setup.',
   },
 ]
 
-const upcoming = Array.from({ length: 6 })
+const projects = Array.from({ length: 8 })
 
 function App() {
   return (
@@ -31,31 +37,60 @@ function App() {
       </header>
 
       <main className="mx-auto w-full max-w-5xl px-6 pb-24">
-        <div className="pt-8 pb-14 text-center">
+        <div className="pt-8 pb-8 text-center">
           <h1 className="text-5xl font-bold tracking-tight text-ink sm:text-6xl">
             PROJECT FRAME
           </h1>
           <p className="mt-3 text-lg font-semibold text-accent">
             a starter framework by Travis
           </p>
+          <div className="mx-auto mt-8 h-px w-24 bg-ink/20" />
         </div>
 
-        <div className="mb-6 flex flex-col gap-6">
-          {features.map((feature) => (
+        <div className="mb-24 flex flex-col gap-16">
+          {features.map((feature, i) => (
             <div
               key={feature.title}
-              className="rounded-2xl border-[3px] border-black bg-white p-10 transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000]"
+              className={`flex flex-col gap-8 lg:items-center lg:gap-16 ${
+                i % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'
+              }`}
             >
-              <h2 className="text-3xl font-bold tracking-tight text-ink">
-                {feature.title}
-              </h2>
-              <p className="mt-3 text-lg text-ink/70">{feature.description}</p>
+              <div className="flex-1">
+                <span className="text-sm font-bold tracking-wide text-accent">
+                  {feature.index}
+                </span>
+                <h2 className="mt-2 text-3xl font-bold tracking-tight text-ink">
+                  {feature.title}
+                </h2>
+                <p className="mt-3 text-lg text-ink/70">{feature.description}</p>
+              </div>
+
+              <div className="flex-1 rounded-2xl border-[3px] border-black bg-white p-10 transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000]">
+                <span className="text-6xl font-bold text-ink/10">
+                  {feature.index}
+                </span>
+                <p className="mt-4 text-xl font-bold tracking-tight text-ink">
+                  {feature.title}
+                </p>
+                <span className="mt-4 inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold tracking-wide text-white uppercase">
+                  {feature.tag}
+                </span>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {upcoming.map((_, i) => (
+        <div className="mb-16 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-ink">
+            Projects
+          </h2>
+          <p className="mt-3 text-lg text-ink/70">
+            Built with this framework — more shipping soon.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {projects.map((_, i) => (
             <div
               key={i}
               className="flex aspect-4/3 flex-col items-center justify-center rounded-2xl border-[3px] border-black bg-white p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000]"
@@ -65,6 +100,10 @@ function App() {
           ))}
         </div>
       </main>
+
+      <footer className="border-t-[3px] border-black px-6 py-8 text-center text-sm font-semibold text-ink/60">
+        © 2026 Travis Nguyen. Built with Project Frame.
+      </footer>
     </div>
   )
 }
