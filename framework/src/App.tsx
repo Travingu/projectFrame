@@ -22,7 +22,9 @@ const features = [
   },
 ]
 
-const projects = Array.from({ length: 8 })
+const projects = Array.from({ length: 4 })
+const projectCardClass =
+  'flex aspect-4/3 w-56 flex-none flex-col items-center justify-center rounded-2xl border-[3px] border-black bg-white p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000] sm:w-64'
 
 function App() {
   return (
@@ -89,21 +91,28 @@ function App() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {projects.map((_, i) => (
-            <div
-              key={i}
-              className="flex aspect-4/3 flex-col items-center justify-center rounded-2xl border-[3px] border-black bg-white p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000]"
-            >
-              <span className="font-bold">Coming soon</span>
+        <div className="flex flex-col gap-6">
+          <div className="marquee-fade overflow-hidden">
+            <div className="flex w-max gap-6 motion-safe:animate-[marquee-left_32s_linear_infinite] motion-safe:hover:[animation-play-state:paused]">
+              {[...projects, ...projects].map((_, i) => (
+                <div key={i} className={projectCardClass}>
+                  <span className="font-bold">Coming soon</span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          <div className="marquee-fade overflow-hidden">
+            <div className="flex w-max gap-6 motion-safe:animate-[marquee-right_32s_linear_infinite] motion-safe:hover:[animation-play-state:paused]">
+              {[...projects, ...projects].map((_, i) => (
+                <div key={i} className={projectCardClass}>
+                  <span className="font-bold">Coming soon</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </main>
-
-      <footer className="border-t-[3px] border-black px-6 py-8 text-center text-sm font-semibold text-ink/60">
-        © 2026 Travis Nguyen. Built with Project Frame.
-      </footer>
     </div>
   )
 }
