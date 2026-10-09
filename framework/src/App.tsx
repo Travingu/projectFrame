@@ -1,10 +1,19 @@
-const features = [
+type Feature = {
+  index: string
+  tag: string
+  title: string
+  description: string
+  href?: string
+}
+
+const features: Feature[] = [
   {
     index: '01',
-    tag: 'Performance',
-    title: 'Fast',
+    tag: 'Project',
+    title: 'Trade Desk',
     description:
-      'Built on Vite and the React Compiler for instant HMR and optimized production builds out of the box.',
+      'A private calculator for one ESPN fantasy football league. It scores trades and waiver moves by how they change your weekly lineup and how the other manager is likely to see them.',
+    href: 'https://tradeff.travingn.dev',
   },
   {
     index: '02',
@@ -21,6 +30,45 @@ const features = [
       'TypeScript, Tailwind CSS, and Oxlint configured from the start so you can skip the boilerplate setup.',
   },
 ]
+
+const featureCardClass =
+  'flex-1 rounded-2xl border-[3px] border-black bg-white p-10 transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000]'
+
+function FeatureCard({ feature }: { feature: Feature }) {
+  const content = (
+    <>
+      <span className="text-6xl font-bold text-ink/10">{feature.index}</span>
+      <p className="mt-4 text-xl font-bold tracking-tight text-ink">
+        {feature.title}
+      </p>
+      <div className="mt-4 flex flex-wrap items-center gap-4">
+        <span className="inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold tracking-wide text-white uppercase">
+          {feature.tag}
+        </span>
+        {feature.href && (
+          <span className="text-xs font-bold tracking-wide text-accent">
+            {new URL(feature.href).host}
+          </span>
+        )}
+      </div>
+    </>
+  )
+
+  if (!feature.href) {
+    return <div className={featureCardClass}>{content}</div>
+  }
+
+  return (
+    <a
+      href={feature.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${featureCardClass} block focus-visible:-translate-y-1 focus-visible:shadow-[6px_6px_0_0_#000] focus-visible:outline-none`}
+    >
+      {content}
+    </a>
+  )
+}
 
 type Project = {
   title: string
@@ -103,17 +151,7 @@ function App() {
                 <p className="mt-3 text-lg text-ink/70">{feature.description}</p>
               </div>
 
-              <div className="flex-1 rounded-2xl border-[3px] border-black bg-white p-10 transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000]">
-                <span className="text-6xl font-bold text-ink/10">
-                  {feature.index}
-                </span>
-                <p className="mt-4 text-xl font-bold tracking-tight text-ink">
-                  {feature.title}
-                </p>
-                <span className="mt-4 inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold tracking-wide text-white uppercase">
-                  {feature.tag}
-                </span>
-              </div>
+              <FeatureCard feature={feature} />
             </div>
           ))}
         </div>
