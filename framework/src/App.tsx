@@ -70,9 +70,52 @@ function FeatureCard({ feature }: { feature: Feature }) {
   )
 }
 
-const projects = Array.from({ length: 4 })
+type Project = {
+  title: string
+  description: string
+  href: string
+}
+
+// null entries render as "Coming soon" placeholders.
+const projects: (Project | null)[] = [
+  {
+    title: 'Trade Desk',
+    description: 'Scores fantasy football trades and waiver moves.',
+    href: 'https://tradeff.travingn.dev',
+  },
+  null,
+  null,
+  null,
+]
 const projectCardClass =
   'flex aspect-4/3 w-56 flex-none flex-col items-center justify-center rounded-2xl border-[3px] border-black bg-white p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-[6px_6px_0_0_#000] sm:w-64'
+
+function ProjectCard({ project }: { project: Project | null }) {
+  if (!project) {
+    return (
+      <div className={projectCardClass}>
+        <span className="font-bold">Coming soon</span>
+      </div>
+    )
+  }
+
+  return (
+    <a
+      href={project.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${projectCardClass} focus-visible:-translate-y-1 focus-visible:shadow-[6px_6px_0_0_#000] focus-visible:outline-none`}
+    >
+      <span className="text-xl font-bold tracking-tight text-ink">
+        {project.title}
+      </span>
+      <span className="mt-2 text-sm text-ink/70">{project.description}</span>
+      <span className="mt-4 text-xs font-bold tracking-wide text-accent">
+        {new URL(project.href).host}
+      </span>
+    </a>
+  )
+}
 
 function App() {
   return (
@@ -132,20 +175,16 @@ function App() {
         <div className="flex flex-col gap-6">
           <div className="marquee-fade overflow-hidden">
             <div className="flex w-max gap-6 motion-safe:animate-[marquee-left_32s_linear_infinite] motion-safe:hover:[animation-play-state:paused]">
-              {[...projects, ...projects].map((_, i) => (
-                <div key={i} className={projectCardClass}>
-                  <span className="font-bold">Coming soon</span>
-                </div>
+              {[...projects, ...projects].map((project, i) => (
+                <ProjectCard key={i} project={project} />
               ))}
             </div>
           </div>
 
           <div className="marquee-fade overflow-hidden">
             <div className="flex w-max gap-6 motion-safe:animate-[marquee-right_32s_linear_infinite] motion-safe:hover:[animation-play-state:paused]">
-              {[...projects, ...projects].map((_, i) => (
-                <div key={i} className={projectCardClass}>
-                  <span className="font-bold">Coming soon</span>
-                </div>
+              {[...projects, ...projects].map((project, i) => (
+                <ProjectCard key={i} project={project} />
               ))}
             </div>
           </div>
