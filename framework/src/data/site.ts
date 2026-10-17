@@ -1,8 +1,8 @@
-/** The travingn.dev subsites, linked from the top bar. Same list on both the Projects and Games sites. */
-export const sections = [
-  { label: 'Projects', href: 'https://projects.travingn.dev/' },
-  { label: 'Games', href: 'https://games.travingn.dev/' },
-] as const
+/**
+ * The travingn.dev subsites, linked from the top bar. Games (https://games.travingn.dev/) is hidden
+ * here for now, as on the landing page; the Games site's own copy of this file still lists it.
+ */
+export const sections = [{ label: 'Projects', href: 'https://projects.travingn.dev/' }] as const
 
 export type SectionLabel = (typeof sections)[number]['label']
 
